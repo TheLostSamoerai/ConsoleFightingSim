@@ -1,4 +1,4 @@
-armours = {
+armours_dict = {
             'Leather Helmet': 5,
             'Leather Chestplate': 8,
             'Leather Leggings': 7,
@@ -55,3 +55,4 @@ armours = {
             "Timeless Hood": 40,
             "Ethereal Armor": 80
         }
+armours_list = list(armours_dict.keys())

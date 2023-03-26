@@ -12,19 +12,23 @@ class Player:
         self.critdamage = critdamage
         self.critical_hit = self.base_damage * (1 + self.critdamage / 100) // 1     # this formula might need some more work
         self.magic_find = magic_find
+        self.total_damage = 0
 
 
     def take_damage(self, damage):
         self.effective_health -= damage
+        self.total_damage += damage
 
 
     def find_armour_message(self, armour_type, armour_dict):
         find_phrases = ["WAAAAAAAUUW ", "Ohhh myyy gawwdddd ", "GOD DANG ", "BEEPBOOPBAP ", "SUDDENLY "]
-        find_location_phrases = [" in the bushes!", " on the ground!", " behind a tree!", " under a rock!", " that  the leaves!"]
+        find_location_phrases = [", in the bushes!", ", on the ground!", ", behind a tree!", ", under a rock!", ", in the leaves!"]
+        print("\033[34m" + "***********************" + "\033[0m")
         print(random.choice(find_phrases) + self.name + " found a piece of armour: " + armour_type + random.choice(find_location_phrases))
         print("It wil give " + self.name + " " + str(armour_dict[armour_type]) + " defence! That's nice!")
+        print("\033[34m" + "***********************" + "\033[0m")
+        print("")
 
     def apply_armour(self, armour_type, armour_dict):
-        armour_defence_bonus = armour_dict[armour_type]
-        self.defence += armour_defence_bonus
-        self.effective_health = self.effective_health * (1 + (self.defence / 100)) // 1
+        self.armour_defence_bonus = armour_dict[armour_type]
+        self.effective_health *= 1 + (self.armour_defence_bonus / 100)

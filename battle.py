@@ -1,4 +1,5 @@
 import random
+from data import armours_dict, armours_list
 # todo fast forward, add some colours to the text
 
 def fight(player1, player2):
@@ -28,6 +29,7 @@ def fight(player1, player2):
     while attacker.effective_health > 0 and defender.effective_health > 0:
         # setting checking if hit wil be a critical (0-10, 10 == 100%, 5 == 50%, ...)
         crit_chance_effective = random.randint(attacker.critchance, 10)
+        magic_find_effective = random.randint(1, 100)
         # if is a crit
         if crit_chance_effective == 10:
             damage = attacker.critical_hit
@@ -38,6 +40,7 @@ def fight(player1, player2):
                   random.choice(fight_phrases_part_2) + " " + "dealing" + " " + str(damage) + " damage!")
             print(defender.name + " has " + "\033[91m" + str(
                 defender.effective_health) + " health left over!" + "\033[0m")
+            # fastforward
             if "no" in fast_forward:
                 input("Press Enter to continue")
             print("")
@@ -49,9 +52,14 @@ def fight(player1, player2):
             print(str(attacker.name) + " " + random.choice(fight_phrases_part_1) + " " + str(defender.name) + " " +
                   random.choice(fight_phrases_part_2) + " " + "dealing" + " " + str(damage) + " damage!")
             print(defender.name + " has " + "\033[91m" + str(defender.effective_health) + " health left over!" + "\033[0m")
+            # fastforward
             if "no" in fast_forward:
                 input("Press Enter to continue")
             print("")
+        if magic_find_effective <= defender.magic_find:
+            armour_type = random.choice(armours_list)
+            defender.find_armour_message(armour_type, armours_dict)
+            defender.apply_armour(armour_type, armours_dict)
         # swapping attacker for defender and vice-versa
         attacker, defender = defender, attacker
 
