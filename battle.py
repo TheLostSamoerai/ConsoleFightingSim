@@ -1,5 +1,5 @@
 import random
-
+# todo fast forward, add some colours to the text
 
 def fight(player1, player2):
     # phrase structure: PLAYER_NAME - fight_phrases_part_1 (VERB) - fight_phrase_part_2 (LOCATION) - dealing X amount of damage

@@ -1,6 +1,7 @@
 import random
 from saving_data import save_player, load_player, clear_file
 from player import Player
+# todo add better random names, better saving/ deletion dialogue
 
 
 # function for letting user to check the stats of each player

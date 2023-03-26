@@ -1,5 +1,5 @@
 import pickle
-
+# todo add better clear saves function
 
 def save_player(player, filename):
     try:

@@ -1,4 +1,4 @@
-
+# todo add arour, spells, new abilities like evading an attack
 class Player:
     def __init__(self, name, health, critchance, critdamage, defence, base_damage):
         self.name = name
