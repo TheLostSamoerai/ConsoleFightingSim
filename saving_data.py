@@ -1,5 +1,5 @@
 import pickle
-from main import full_game
+
 
 def save_player(player, filename):
     try:
@@ -7,7 +7,7 @@ def save_player(player, filename):
             pickle.dump(player, file, protocol=pickle.HIGHEST_PROTOCOL)
     except:
         print("something went wrong, rebooting game...")
-        full_game()
+        #full_game()
 
 # this still needs improving loln now just overwriting everthing
 def clear_file(player1, player2, filename):
@@ -17,7 +17,7 @@ def clear_file(player1, player2, filename):
             pickle.dump(player2, file, protocol=pickle.HIGHEST_PROTOCOL)
     except:
         print("something went wrong, rebooting game...")
-        full_game()
+        #full_game()
 
 
 def load_player(filename):

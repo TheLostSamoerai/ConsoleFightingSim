@@ -1,5 +1,5 @@
 from battle import fight
-from setup import *
+from setup import loading_players_dialogue, setting_up_players, saving_players_dialogue, stat_checking
 from sys import exit
 
 print("BATTLE sim by SB")
