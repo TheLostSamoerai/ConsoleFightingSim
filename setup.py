@@ -125,19 +125,25 @@ def loading_players_dialogue(filename):
     print("WELCOME TO THE LOADER!")
     print("")
     players = load_player(filename)
+    # printing all players available to load
     for i, player in enumerate(players):
         print(f"{i+1}. {player.name}")
     player_choice = int(input("Which player would you like to load? Enter the number of the player: "))
+    # -1 to account for the starting at index 0
     player = players[player_choice-1]
     return player
 
 
 def saving_players_dialogue(p1, p2, filename):
-    user_input = input("Would you like to save p1 or p2 (typ p1 or p2 or both): ")
+    user_input = input("Would you like to save p1 or p2 (typ p1 or p2 or both or none): ")
     if "p1" in user_input:
         save_player(p1, filename)
+        print("player 1 saved succesfully ")
     elif "p2" in user_input:
         save_player(p2, filename)
+        print("saved player 2 succesfully")
+    elif "none" in user_input:
+        print("not saving any players ...")
     else:
         save_player(p1, filename)
         save_player(p2, filename)

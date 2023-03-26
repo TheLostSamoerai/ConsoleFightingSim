@@ -1,4 +1,3 @@
-# imports
 
 class Player:
     def __init__(self, name, health, critchance, critdamage, defence, base_damage):
@@ -9,7 +8,7 @@ class Player:
         self.base_damage = base_damage
         self.critchance = critchance
         self.critdamage = critdamage
-        self.critical_hit = self.base_damage * (critdamage * 0.01) // 1
+        self.critical_hit = self.base_damage * (critdamage * 0.1) // 1      # this formula might need some more work
 
 
     def take_damage(self, damage):
