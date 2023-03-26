@@ -4,7 +4,7 @@ def save_player(player, filename):
     with open(filename, 'ab') as file:
         pickle.dump(player, file, protocol=pickle.HIGHEST_PROTOCOL)
 
-
+# this still needs improving loln now just overwriting everthing
 def clear_file(player1, player2, filename):
     with open(filename, 'wb') as file:
         pickle.dump(player1, file, protocol=pickle.HIGHEST_PROTOCOL)

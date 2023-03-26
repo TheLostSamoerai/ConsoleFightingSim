@@ -4,7 +4,7 @@ from sys import exit
 
 print("BATTLE sim by SB")
 file = 'players.pickle'
-# creating 2 players with this func
+# creating 2 players with this function
 def player_loading_player_creation():
     load_or_new_players = input("Do you want to load old players or create new ones? typ load or new: ")
     if "new" in load_or_new_players:
@@ -23,6 +23,7 @@ def player_loading_player_creation():
 
 def main():
     p1, p2 = player_loading_player_creation()
+    # saving the beginning state of the players (after the battle their health is different)
     p1_reserve = p1
     p2_reserve = p2
     stat_checking(p1, p2)

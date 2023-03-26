@@ -11,8 +11,7 @@ def fight(player1, player2):
                             "in the ear", "in the throat", "in the groin", "in the leg", "in the arm",
                             "in the shoulder", "in the back", "in the neck", "in the stomach", "in the ribs",
                             "in the shin", "in the ankle", "in the elbow", "in the knee", "in the thigh",
-                            "to the floor",
-                            "to the ground", "against the wall"]
+                            "to the floor","to the ground", "against the wall", "against the table"]
 
     print("FIGHT IS COMMENCING")
     print("-------------------")
