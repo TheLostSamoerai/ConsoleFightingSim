@@ -137,7 +137,7 @@ def saving_players_dialogue(p1, p2, filename):
     user_input = input("Would you like to save p1 or p2 (typ p1 or p2 or both): ")
     if "p1" in user_input:
         save_player(p1, filename)
-        print("player 1 saved succesfully")
+        print("player 1 saved succesfully ")
     elif "p2" in user_input:
         save_player(p2, filename)
         print("saved player 2 succesfully")
