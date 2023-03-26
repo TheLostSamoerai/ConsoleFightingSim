@@ -23,10 +23,12 @@ def player_loading_player_creation():
 
 def main():
     p1, p2 = player_loading_player_creation()
+    p1_reserve = p1
+    p2_reserve = p2
     stat_checking(p1, p2)
     print("")
     fight(p1, p2)
-    saving_players_dialogue(p1, p2, file)
+    saving_players_dialogue(p1_reserve, p2_reserve, file)
     exit_or_repeat = input("Do you want to exit or do you want to play again? typ exit or just hit enter: ")
     if exit_or_repeat == "exit":
         return False
