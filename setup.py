@@ -5,47 +5,51 @@ from player import Player
 
 # function for letting user to check the stats of each player
 def stat_checking(p1, p2):
-    print("A NEW BATTLE HAS STARTED")
-    print(
-        "THE ALMIGHTY    " + "\033[91m" + p1.name + "\033[0m" + "    VERSUS THE ALMIGHTY    " + "\033[91m" + p2.name + "\033[0m")
-    stats_or_fight = input(
-        "Enter fight if you want to go to the fight immediately, enter stats if you want to read stats first: ")
-    # if user wants to check stats:
-    if "stats" in stats_or_fight:
-        print("THE STATS:")
-        print("")
+    try:
+        print("A NEW BATTLE HAS STARTED")
+        print(
+            "THE ALMIGHTY    " + "\033[91m" + p1.name + "\033[0m" + "    VERSUS THE ALMIGHTY    " + "\033[91m" + p2.name + "\033[0m")
+        stats_or_fight = input(
+            "Enter fight if you want to go to the fight immediately, enter stats if you want to read stats first: ")
+        # if user wants to check stats:
+        if "stats" in stats_or_fight:
+            print("THE STATS:")
+            print("")
 
-        # stats player 1 display
-        print(p1.name + "'s" + " STATS:")
-        print("")
-        print("\033[91m" + "HEALTH: " + "\033[0m" + str(p1.health))
-        print("\033[91m" + "DEFENCE: " + "\033[0m" + str(p1.defence))
-        print("\033[32m" + "EFFECTIVE HEALTH: " + "\033[0m" + str(p1.effective_health))
-        print("\033[36m" + "BASE DAMAGE: " + "\033[0m" + str(p1.base_damage))
-        print("\033[34m" + "CRIT DAMAGE: " + "\033[0m" + str(p1.critdamage))
-        print("\033[34m" + "CRITCHANCE: " + "\033[0m" + str(p1.critchance))
-        print("\033[34m" + "CRITICAL HIT : " + "\033[0m" + str(p1.critical_hit))
+            # stats player 1 display
+            print(p1.name + "'s" + " STATS:")
+            print("")
+            print("\033[91m" + "HEALTH: " + "\033[0m" + str(p1.health))
+            print("\033[91m" + "DEFENCE: " + "\033[0m" + str(p1.defence))
+            print("\033[32m" + "EFFECTIVE HEALTH: " + "\033[0m" + str(p1.effective_health))
+            print("\033[36m" + "BASE DAMAGE: " + "\033[0m" + str(p1.base_damage))
+            print("\033[34m" + "CRIT DAMAGE: " + "\033[0m" + str(p1.critdamage))
+            print("\033[34m" + "CRITCHANCE: " + "\033[0m" + str(p1.critchance))
+            print("\033[34m" + "CRITICAL HIT : " + "\033[0m" + str(p1.critical_hit))
 
-        # waiting for user reaction/pauing untill user presses enter
-        print("")
-        input("PRESS ENTER TO VIEW PLAYER 2's STATS: ")
-        print("")
+            # waiting for user reaction/pauing untill user presses enter
+            print("")
+            input("PRESS ENTER TO VIEW PLAYER 2's STATS: ")
+            print("")
 
-        # stats player 2 display
-        print(p2.name + "'s" + " STATS:")
-        print("")
-        print("\033[91m" + "HEALTH: " + "\033[0m" + str(p2.health))
-        print("\033[91m" + "DEFENCE: " + "\033[0m" + str(p2.defence))
-        print("\033[32m" + "EFFECTIVE HEALTH: " + "\033[0m" + str(p2.effective_health))
-        print("\033[36m" + "BASE DAMAGE: " + "\033[0m" + str(p2.base_damage))
-        print("\033[34m" + "CRIT DAMAGE: " + "\033[0m" + str(p2.critdamage))
-        print("\033[34m" + "CRITCHANCE: " + "\033[0m" + str(p2.critchance))
-        print("\033[34m" + "CRITICAL HIT : " + "\033[0m" + str(p2.critical_hit))
-        print("")
-        input("Press ENTER to continue")
+            # stats player 2 display
+            print(p2.name + "'s" + " STATS:")
+            print("")
+            print("\033[91m" + "HEALTH: " + "\033[0m" + str(p2.health))
+            print("\033[91m" + "DEFENCE: " + "\033[0m" + str(p2.defence))
+            print("\033[32m" + "EFFECTIVE HEALTH: " + "\033[0m" + str(p2.effective_health))
+            print("\033[36m" + "BASE DAMAGE: " + "\033[0m" + str(p2.base_damage))
+            print("\033[34m" + "CRIT DAMAGE: " + "\033[0m" + str(p2.critdamage))
+            print("\033[34m" + "CRITCHANCE: " + "\033[0m" + str(p2.critchance))
+            print("\033[34m" + "CRITICAL HIT : " + "\033[0m" + str(p2.critical_hit))
+            print("")
+            input("Press ENTER to continue")
 
-    else:
-        return None
+        else:
+            return None
+    except ValueError:
+        print("you typed something invalid!")
+        stat_checking(p1, p2)
 
 
 # function for letting user create 2 players or letting the computer generate 2 random fighters
@@ -124,34 +128,42 @@ def setting_up_players(amount_of_players):
 def loading_players_dialogue(filename):
     print("WELCOME TO THE LOADER!")
     print("")
-    players = load_player(filename)
-    # printing all players available to load
-    for i, player in enumerate(players):
-        print(f"{i+1}. {player.name}")
-    player_choice = int(input("Which player would you like to load? Enter the number of the player: "))
-    # -1 to account for the starting at index 0
-    player = players[player_choice-1]
-    return player
+    try:
+        players = load_player(filename)
+        # printing all players available to load
+        for i, player in enumerate(players):
+            print(f"{i+1}. {player.name}")
+        player_choice = int(input("Which player would you like to load? Enter the number of the player: "))
+        # -1 to account for the starting at index 0
+        player = players[player_choice-1]
+        return player
+    except:
+        print("something went wrong")
+        loading_players_dialogue(filename)
 
 
 def saving_players_dialogue(p1, p2, filename):
-    user_input = input("Would you like to save p1 or p2 (typ p1 or p2 or both or none): ")
-    if "p1" in user_input:
-        save_player(p1, filename)
-        print("player 1 saved succesfully ")
-    elif "p2" in user_input:
-        save_player(p2, filename)
-        print("saved player 2 succesfully")
-    elif "none" in user_input:
-        print("not saving any players ...")
-    else:
-        save_player(p1, filename)
-        save_player(p2, filename)
-    print("players saved succesfully")
-    clear_file_input = input("yes to clear all players from save but save your just used ones, no for no :D")
-    if "yes" in clear_file_input:
-        clear_file(p1, p2, filename)
-    else:
-        return 0
+    try:
+        user_input = input("Would you like to save p1 or p2 (typ p1 or p2 or both or none): ")
+        if "p1" in user_input:
+            save_player(p1, filename)
+            print("player 1 saved succesfully ")
+        elif "p2" in user_input:
+            save_player(p2, filename)
+            print("saved player 2 succesfully")
+        elif "none" in user_input:
+            print("not saving any players ...")
+        else:
+            save_player(p1, filename)
+            save_player(p2, filename)
+        print("players saved succesfully")
+        clear_file_input = input("yes to clear all players from save but save your just used ones, no for no :D")
+        if "yes" in clear_file_input:
+            clear_file(p1, p2, filename)
+        else:
+            return 0
+    except:
+        print("something went wrong")
+        saving_players_dialogue(p1, p2, filename)
 
 

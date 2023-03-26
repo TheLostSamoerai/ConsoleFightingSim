@@ -36,11 +36,16 @@ def main():
     else:
         return True
 
-running = True
-while running:
-    main_function = main()
-    if not main_function:
-        running = False
-        exit()
+
+def full_game():
+    running = True
+    while running:
+        main_function = main()
+        if not main_function:
+            running = False
+            exit()
+
+
+full_game()
 
 

@@ -51,7 +51,7 @@ def fight(player1, player2):
         # swapping attacker for defender and vice-versa
         attacker, defender = defender, attacker
 
-    # checkicking who died (outside of loop)
+    # checking who died (outside of loop)
     if player1.effective_health <= 0:
         print(player1.name + " has died!")
         print(player2.name + " was clearly stronger in this mighty fight, they had " + str(
