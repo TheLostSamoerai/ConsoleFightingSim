@@ -12,6 +12,7 @@ def fight(player1, player2):
                             "in the shoulder", "in the back", "in the neck", "in the stomach", "in the ribs",
                             "in the shin", "in the ankle", "in the elbow", "in the knee", "in the thigh",
                             "to the floor","to the ground", "against the wall", "against the table"]
+    fast_forward = input("Do you want to fastforward or not (typ yes or no): ")
 
     print("FIGHT IS COMMENCING")
     print("-------------------")
@@ -37,8 +38,8 @@ def fight(player1, player2):
                   random.choice(fight_phrases_part_2) + " " + "dealing" + " " + str(damage) + " damage!")
             print(defender.name + " has " + "\033[91m" + str(
                 defender.effective_health) + " health left over!" + "\033[0m")
-
-            input("Press Enter to continue")
+            if "no" in fast_forward:
+                input("Press Enter to continue")
             print("")
         # else just a normal hit
         else:
@@ -48,8 +49,8 @@ def fight(player1, player2):
             print(str(attacker.name) + " " + random.choice(fight_phrases_part_1) + " " + str(defender.name) + " " +
                   random.choice(fight_phrases_part_2) + " " + "dealing" + " " + str(damage) + " damage!")
             print(defender.name + " has " + "\033[91m" + str(defender.effective_health) + " health left over!" + "\033[0m")
-
-            input("Press Enter to continue")
+            if "no" in fast_forward:
+                input("Press Enter to continue")
             print("")
         # swapping attacker for defender and vice-versa
         attacker, defender = defender, attacker

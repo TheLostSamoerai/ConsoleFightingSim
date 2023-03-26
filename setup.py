@@ -27,6 +27,7 @@ def stat_checking(p1, p2):
             print("\033[34m" + "CRIT DAMAGE: " + "\033[0m" + str(p1.critdamage))
             print("\033[34m" + "CRITCHANCE: " + "\033[0m" + str(p1.critchance))
             print("\033[34m" + "CRITICAL HIT : " + "\033[0m" + str(p1.critical_hit))
+            print("\033[34m" + "MAGIC FIND : " + "\033[0m" + str(p1.magic_find))
 
             # waiting for user reaction/pauing untill user presses enter
             print("")
@@ -43,6 +44,7 @@ def stat_checking(p1, p2):
             print("\033[34m" + "CRIT DAMAGE: " + "\033[0m" + str(p2.critdamage))
             print("\033[34m" + "CRITCHANCE: " + "\033[0m" + str(p2.critchance))
             print("\033[34m" + "CRITICAL HIT : " + "\033[0m" + str(p2.critical_hit))
+            print("\033[34m" + "Magic FIND : " + "\033[0m" + str(p2.magic_find))
             print("")
             input("Press ENTER to continue")
 
@@ -63,10 +65,11 @@ def setting_up_players(amount_of_players):
             name1 = str(input("Enter the name of player 1: "))
             health1 = int(input("Enter P1 health: "))
             defence1 = int(input("Enter P1 defence: "))
-            critdamage1 = int(input("Enter P1 critdmg: "))
-            critchance1 = int(input("Enter P1 critchance: "))
+            critdamage1 = int(input("Enter P1 crit dmg: "))
+            critchance1 = int(input("Enter P1 crit chance, num from 1-10: "))
             basedamage1 = int(input("Enter P1 base dmg: "))
-            p1 = Player(name1, health1, critchance1, critdamage1, defence1, basedamage1)
+            magic_find1 = int(input("Enter magic find here for player 1 (num between 1-100): "))
+            p1 = Player(name1, health1, critchance1, critdamage1, defence1, basedamage1, magic_find1)
 
             # player 2
             name2 = str(input("Enter the name of player 2: "))
@@ -75,7 +78,8 @@ def setting_up_players(amount_of_players):
             critdamage2 = int(input("Enter P2 critdmg: "))
             critchance2 = int(input("Enter P2 critchance num from 1-10, 10 is max: "))
             basedamage2 = int(input("Enter P2 base dmg: "))
-            p2 = Player(name2, health2, critchance2, critdamage2, defence2, basedamage2)
+            magic_find2 = int(input("Enter magic find here for player 2 (num between 1-100): "))
+            p2 = Player(name2, health2, critchance2, critdamage2, defence2, basedamage2, magic_find2)
 
             return p1, p2
         except ValueError:
@@ -89,10 +93,11 @@ def setting_up_players(amount_of_players):
             name2 = str(input("Enter the name of player 2: "))
             health2 = int(input("Enter P2 health: "))
             defence2 = int(input("Enter P2 defence: "))
-            critdamage2 = int(input("Enter P2 critdmg: "))
-            critchance2 = int(input("Enter P2 critchance num from 1-10, 10 is max: "))
+            critdamage2 = int(input("Enter P2 crit dmg: "))
+            critchance2 = int(input("Enter P2 crit chance, num from 1-10: "))
             basedamage2 = int(input("Enter P2 base dmg: "))
-            p2 = Player(name2, health2, critchance2, critdamage2, defence2, basedamage2)
+            magic_find2 = int(input("Enter magic find here for player 2 (num between 1-100): "))
+            p2 = Player(name2, health2, critchance2, critdamage2, defence2, basedamage2, magic_find2)
 
             return "None", p2
         except ValueError:
@@ -106,9 +111,9 @@ def setting_up_players(amount_of_players):
         # list of names for the computer to pick from
         names = ["Bob", "Jeff", "Rudy", "Mick", "Jhonny", "Ruz", "Mike", "Lewis", "Brock", "Dani"]
         p1 = Player(random.choice(names), random.randint(80, 150), random.randint(1, 10), random.randint(50, 500),
-                    random.randint(10, 150), random.randint(15, 25))
+                    random.randint(10, 150), random.randint(15, 25), random.randint(1, 100))
         p2 = Player(random.choice(names), random.randint(80, 150), random.randint(1, 10), random.randint(10, 150),
-                    random.randint(10, 150), random.randint(15, 25))
+                    random.randint(10, 150), random.randint(15, 25), random.randint(1, 100))
         # checking for double names
         if p1.name == p2.name:
             p2.name = "Lupo"
@@ -118,7 +123,7 @@ def setting_up_players(amount_of_players):
         # list of names for the computer to pick from
         names = ["Bob", "Jeff", "Rudy", "Mick", "Jhonny", "Ruz", "Mike", "Lewis", "Brock", "Dani"]
         p2 = Player(random.choice(names), random.randint(80, 150), random.randint(1, 10), random.randint(10, 150),
-                    random.randint(10, 150), random.randint(15, 25))
+                    random.randint(10, 150), random.randint(15, 25), random.randint(1, 100))
 
         return "None", p2
     else:
@@ -137,6 +142,7 @@ def loading_players_dialogue(filename):
         player_choice = int(input("Which player would you like to load? Enter the number of the player: "))
         # -1 to account for the starting at index 0
         player = players[player_choice-1]
+        player.effective_health = player.effective_health_reserve
         return player
     except:
         print("something went wrong")
@@ -157,7 +163,7 @@ def saving_players_dialogue(p1, p2, filename):
         else:
             save_player(p1, filename)
             save_player(p2, filename)
-        print("players saved succesfully")
+            print("players saved succesfully")
         clear_file_input = input("yes to clear all players from save but save your just used ones, no for no :D")
         if "yes" in clear_file_input:
             clear_file(p1, p2, filename)
