@@ -35,7 +35,9 @@ def fight(player1, player2):
             # creating phrases
             print(str(attacker.name) + " " + random.choice(fight_phrases_part_1) + " " + str(defender.name) + " " +
                   random.choice(fight_phrases_part_2) + " " + "dealing" + " " + str(damage) + " damage!")
-            print(defender.name + " has " + str(defender.effective_health) + " health left over!")
+            print(defender.name + " has " + "\033[91m" + str(
+                defender.effective_health) + " health left over!" + "\033[0m")
+
             input("Press Enter to continue")
             print("")
         # else just a normal hit
@@ -45,7 +47,8 @@ def fight(player1, player2):
             print("OOOF, just a normal HIT!")
             print(str(attacker.name) + " " + random.choice(fight_phrases_part_1) + " " + str(defender.name) + " " +
                   random.choice(fight_phrases_part_2) + " " + "dealing" + " " + str(damage) + " damage!")
-            print(defender.name + " has " + str(defender.effective_health) + " health left over!")
+            print(defender.name + " has " + "\033[91m" + str(defender.effective_health) + " health left over!" + "\033[0m")
+
             input("Press Enter to continue")
             print("")
         # swapping attacker for defender and vice-versa

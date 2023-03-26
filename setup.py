@@ -104,7 +104,7 @@ def setting_up_players(amount_of_players):
     elif "random" in setting and "2" in amount_of_players:
         # list of names for the computer to pick from
         names = ["Bob", "Jeff", "Rudy", "Mick", "Jhonny", "Ruz", "Mike", "Lewis", "Brock", "Dani"]
-        p1 = Player(random.choice(names), random.randint(80, 150), random.randint(1, 10), random.randint(10, 150),
+        p1 = Player(random.choice(names), random.randint(80, 150), random.randint(1, 10), random.randint(50, 500),
                     random.randint(10, 150), random.randint(15, 25))
         p2 = Player(random.choice(names), random.randint(80, 150), random.randint(1, 10), random.randint(10, 150),
                     random.randint(10, 150), random.randint(15, 25))

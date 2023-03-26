@@ -8,7 +8,7 @@ class Player:
         self.base_damage = base_damage
         self.critchance = critchance
         self.critdamage = critdamage
-        self.critical_hit = self.base_damage * (critdamage * 0.1) // 1      # this formula might need some more work
+        self.critical_hit = self.base_damage * (1 + self.critdamage / 100) // 1     # this formula might need some more work
 
 
     def take_damage(self, damage):
